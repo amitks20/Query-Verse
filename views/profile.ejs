@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style>
+        /* Add fade-in effect */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Applying fadeIn to profile and posts container */
+        .fadeIn {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* Button hover animation */
+        .btn-hover:hover {
+            transform: scale(1.05);
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+    <div class="w-full min-h-screen p-10 flex flex-col items-center">
+
+        <!-- Top Navigation Bar -->
+        <div class="w-full flex justify-end gap-4 mb-5">
+            <a class="border-2 rounded-md px-6 py-3 text-md text-gray-300 hover:bg-gray-700 transition duration-300 ease-in-out" href="/loggedHome">🏠 Home</a>
+            <a class="bg-red-600 rounded-md px-6 py-3 text-md text-white hover:bg-red-500 transition duration-300 ease-in-out" href="/logout">Logout</a>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="text-center mb-10">
+            <a href="/profile/upload" class="block mb-3">
+                <div class="w-32 h-32 rounded-full overflow-hidden mx-auto shadow-xl transition-transform transform hover:scale-110">
+                    <img class="w-full h-full object-cover" src="/images/uploads/<%= user.profilepic %>" alt="Profile Picture">
+                </div>
+            </a>
+            <p class="text-gray-400 text-sm">Click on the picture to change your profile pic</p>
+        </div>
+
+        <!-- Greeting Section -->
+        <h3 class="text-3xl font-light text-center mb-4">Hello, <span class="font-semibold text-blue-400"><%= user.name %></span> 🙏🙏🙏</h3>
+        <h5 class="text-xl text-center text-gray-400 mb-8">You can create a new post here.</h5>
+
+        <!-- Post Creation Form -->
+        <form action="/post" method="post" class="w-full max-w-lg mx-auto fadeIn">
+            <textarea name="content" placeholder="What's on your mind?" class="w-full p-4 bg-transparent border-2 border-gray-700 rounded-xl text-white placeholder-gray-500 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 mb-5" rows="4"></textarea>
+            <input type="submit" value="Create a Post" class="w-full py-3 px-6 bg-blue-600 text-white rounded-xl text-lg font-semibold cursor-pointer hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out btn-hover">
+        </form>
+
+        <!-- User Posts Section -->
+        <div class="posts mt-20 w-full max-w-4xl mx-auto fadeIn">
+            <h3 class="text-2xl text-gray-400 text-center mb-5">Your Posts</h3>
+            <div class="postcontainer grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% user.posts.reverse().forEach(function(post) { %>
+                    <div class="post p-6 bg-gray-800 border-2 border-gray-700 rounded-xl hover:bg-gray-700 transition-all duration-300 ease-in-out">
+                        <h4 class="text-blue-400 font-semibold mb-2"><%= user.username %></h4>
+                        <p class="text-sm tracking-tight mb-5"><%= post.content %></p>
+                        <div class="flex justify-between items-center">
+                            <small class="text-gray-400"><%= post.likes.length %> likes</small>
+                            <div class="flex gap-3 text-sm">
+                                <a href="/like/<%= post._id %>" class="text-blue-400 hover:text-blue-500 transition duration-300"> 
+                                    <%= post.likes.indexOf(user._id) === -1 ? "Like" : "Unlike" %>
+                                </a>
+                                <a href="/edit/<%= post._id %>" class="text-gray-400 hover:text-gray-300 transition duration-300">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

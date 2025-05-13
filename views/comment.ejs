@@ -1,0 +1,53 @@
+<!-- views/comment.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments for Post</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-900 text-white p-10">
+    <div class="w-full flex justify-end gap-4">
+        <a class="border-1 rounded-md px-3 py-2 text-md mb-5 inline-block" href="/loggedHome">🏠</a>
+        <a class="bg-red-500 rounded-md px-3 py-2 text-md mb-5 inline-block" href="/logout">Logout</a>
+
+    </div>
+    <div class="container mx-auto">
+        <h1 class="text-4xl font-bold text-center text-blue-600 mb-6">Comments for Post</h1>
+
+        <% if (post) { %>
+            <!-- Post Content -->
+            <div class="bg-zinc-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-semibold text-blue-500 mb-3">@<%= post.user.username %> says:</h2>
+                <p class="text-sm text-gray-300"><%= post.content %></p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="bg-zinc-800 p-6 rounded-lg shadow-md mb-6">
+                <h3 class="text-lg font-semibold text-green-500 mb-4">Comments:</h3>
+                <% if (post.comments && post.comments.length > 0) { %>
+                    <!-- Loop through the comments and display them -->
+                    <% post.comments.forEach(function(comment) { %>
+                        <div class="bg-zinc-700 p-4 rounded-md mb-4">
+                            <strong class="text-blue-400"><%= comment.user.username %></strong>: 
+                            <p class="text-sm text-gray-300"><%= comment.content %></p>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p class="text-sm text-gray-400">No comments yet.</p>
+                <% } %>
+            </div>
+
+            <!-- Add Comment Form -->
+            <form action="/comment/<%= post._id %>" method="POST" class="bg-zinc-800 p-6 rounded-lg shadow-md">
+                <textarea name="content" placeholder="Add a comment..." class="w-full p-3 rounded-md border border-zinc-600 bg-zinc-900 text-sm text-white focus:outline-none focus:ring-2 focus:ring-green-500 mb-4" required></textarea>
+                <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded-full hover:bg-green-700">Add Comment</button>
+            </form>
+
+        <% } else { %>
+            <p class="text-red-500 text-center">Post not found.</p>
+        <% } %>
+    </div>
+</body>
+</html>

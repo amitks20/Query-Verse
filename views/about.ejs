@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - QueryVerse</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style>
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fadeIn {
+            animation: fadeIn 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-zinc-900 text-white font-sans">
+
+    <!-- Main Container -->
+    <div class="w-full min-h-screen p-10 fadeIn">
+        
+        <!-- Header Section -->
+        <div class="w-full text-center mb-8">
+            <h1 class="text-6xl text-blue-600 font-extrabold">About QueryVerse</h1>
+            <p class="text-xl text-gray-400 mt-4">Your universe of queries and insights</p>
+        </div>
+
+        <!-- About Section -->
+        <section class="mb-12">
+            <h2 class="text-4xl font-semibold text-blue-500 mb-4">What is QueryVerse?</h2>
+            <p class="text-lg text-gray-300 leading-relaxed">
+                QueryVerse is an innovative platform designed to connect people through questions and answers. 
+                Our goal is to provide a space where users can share, learn, and gain insights on various topics. 
+                Whether you're looking to solve a problem, explore new ideas, or just satisfy your curiosity, 
+                QueryVerse is the place to be.
+            </p>
+        </section>
+
+        <!-- Features Section -->
+        <section class="mb-12">
+            <h2 class="text-4xl font-semibold text-blue-500 mb-4">Key Features</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card p-6 bg-zinc-800 border-2 border-zinc-700 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-500 mb-3">Explore Insights</h3>
+                    <p class="text-gray-300">Discover insights from users worldwide on various topics.</p>
+                </div>
+                <div class="feature-card p-6 bg-zinc-800 border-2 border-zinc-700 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-500 mb-3">Interactive Discussions</h3>
+                    <p class="text-gray-300">Engage with others through real-time comments and discussions.</p>
+                </div>
+                <div class="feature-card p-6 bg-zinc-800 border-2 border-zinc-700 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-500 mb-3">Personalized Recommendations</h3>
+                    <p class="text-gray-300">Get personalized content and insights based on your interests.</p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section>
+            <h2 class="text-4xl font-semibold text-blue-500 mb-4">Meet the Founder</h2>
+            <div>
+                
+                <div class="team-member p-6 bg-zinc-800 border-2 border-zinc-700 rounded-lg shadow-lg text-center">
+                    <img src="/images/amit.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4">
+                    <h3 class="text-xl text-blue-500 font-semibold">Amit Kumar Sahu</h3>
+                    <p class="text-gray-300">Developer</p>
+                    <p class="text-gray-400 mt-2">Amit is the visionary behind QueryVerse, with a passion for innovation and problem-solving.</p>
+                </div>
+
+                
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-zinc-800 text-gray-400 py-6 mt-10">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-sm">© 2025 QueryVerse. All rights reserved.</p>
+            <p class="text-xs mt-2">Privacy Policy | Terms of Service</p>
+            <div class="mt-4 text-xs">
+                <a href="#" class="text-gray-300 hover:text-blue-400">Contact</a> 
+                
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

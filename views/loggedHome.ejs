@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueryVerse</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style>
+       
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fadeIn {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .btn-hover:hover {
+            transform: scale(1.05);
+            transition: all 0.3s ease-in-out;
+        }
+
+       
+        .logo-animation {
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+    <div class="w-full min-h-screen p-10 fadeIn">
+        
+        <div class="w-full flex justify-end gap-4 mb-5">
+            <a class="rounded-full bg-silver-500 rounded-full px-4 py-2 text-sm mb-5 inline-block border-[1px] hover:bg-green-700 hover:border-transparent text-white transition-all duration-300 btn-hover" href="/profile">Profile</a>
+            
+        </div>
+
+        <h1 class="text-6xl mb-5 text-blue-600 font-extrabold text-center mt-[-30px]">QueryVerse</h1>
+        <h2 class="text-red-400 text-center text-sm mb-10 mt-[-10px]">A universe of queries and insights.</h2>
+
+
+        <!-- Updated logo size (larger) -->
+        <img src="/images/query-logo.png" alt="Logo" class="absolute top-0 left-0 m-4 w-32 h-32 sm:w-32 sm:h-32 logo-animation">
+
+        <div class="postcontainer mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <% allPosts.reverse().forEach(function(post){ %>
+                <div class="post p-6 bg-zinc-800 border-2 border-zinc-700 rounded-lg shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out">
+                    <h4 class="text-blue-500 mb-2 font-semibold">@<%= post.user.username  %></h4>
+                    <p class="text-sm tracking-tight mb-4"><%= post.content  %></p>
+                    <small class="text-gray-400 inline-block mb-4"><%= post.likes.length %> likes</small>
+                
+                    <div class="btns flex gap-4 mt-3 text-sm">
+                        <a href="/like/<%=post._id%>" class="text-blue-500 hover:text-blue-400 transition duration-300 btn-hover">Like</a>
+                
+                        <a href="/comment/<%=post._id%>" class="text-blue-500 flex items-center gap-1 hover:text-blue-400 transition duration-300 btn-hover">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A9.015 9.015 0 0018 12c0-2.21-.834-4.21-2.219-5.688A7.989 7.989 0 0012 3a7.989 7.989 0 00-5.781 3.312A9.015 9.015 0 006 12c0 2.21.834 4.21 2.219 5.688L6 17h5m4 0v2a2 2 0 01-2 2H7a2 2 0 01-2-2v-2" />
+                            </svg>
+                            Comment
+                        </a>
+                    </div>
+                </div>
+                
+            <% }) %>
+        </div>
+
+    </div>
+    <footer class="bg-zinc-800 text-gray-400 py-6 mt-10">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-sm">© 2025 QueryVerse. All rights reserved.</p>
+            <p class="text-xs mt-2">Privacy Policy | Terms of Service</p>
+            <div class="mt-4 text-xs">
+                <a href="/contact" class="text-gray-300 hover:text-blue-400">Contact</a> | 
+                <a href="/about" class="text-gray-300 hover:text-blue-400">About Us</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
